@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Кнут </title>
+		<script src = 'whip.js'>
+		</script>
+	</head>
+	<body>
+		<div id = 'Canv'>
+		<b>
+		
+		<label>Частота обновления кадров<input type = 'range' id = 'FPS' min = 10 step = 10 value = 120 max = 120></label>
+		<br>
+		<br>
+		<label>Число элементов<input type = 'text' id = 'Num' value = '50'></label>
+		<label> Расстояние между элементами <input type = 'text' id = 'DIST' value = '10'>
+		<br>
+		<br>
+		<label>C <input type = 'text' id = 'CM' value = '1000'></label>
+		<label>β<input type = 'text' id = 'B' value = '1'></label>
+		<br>
+		<br>
+		<input type = "button" id = "reload" value = "Обновить"/> 	<input type="button" id = "Pause" value = "||"/> 
+		</b>
+		<canvas id = 'cnv' width = 1500 height = 500 style='border: 0px solid black;'></canvas>
+		</div>
+	</body>
+</html>
