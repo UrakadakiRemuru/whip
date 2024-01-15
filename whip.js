@@ -4,7 +4,7 @@ function main() {
 	var N = document.getElementById('Num').value; 
 	var a = document.getElementById('DIST').value; 
 	var fps = document.getElementById('FPS').value; 
-	var bm,dt,cm; 
+	var b,dt,c; 
 	
 	const pause_button = document.getElementById('Pause')
 
@@ -48,14 +48,13 @@ function main() {
 
 	function Update() { 
 		N = parseInt(document.getElementById('Num').value);
-		cm = parseFloat(document.getElementById('CM').value);
+		c = parseFloat(document.getElementById('CM').value);
 		a = parseFloat(document.getElementById('DIST').value);
 		dt0 = 0.01;
-		bm = parseFloat(document.getElementById('B').value);
+		b = parseFloat(document.getElementById('B').value);
 		fps = parseInt(document.getElementById('FPS').value);
 		count(N, a);
 		time = 0;
-		a = Math.pow(Math.pow(prt[2].y - prt[1].y, 2) + Math.pow(prt[2].x - prt[1].x, 2), 1/2);
 		interv = setInterval(control, 1000 / fps);
 	}
 	
@@ -71,7 +70,6 @@ function main() {
 			el.vy_dot = 0;
 			el.m = (NUM - i) / 10;
 			prt[i] = el; 
-			console.log(i, prt)
 		}
 	}
 		
@@ -92,11 +90,11 @@ function main() {
 			del_l_left = (l_left - a);
 
 			if (i == N - 1) {
-				vx_dot = cm / prt[i].m * (-del_l_left * (prt[i].x - prt[i - 1].x) / l_left) - bm / prt[i].m * prt[N - 1].vx; 
-				vy_dot = cm / prt[i].m * (-del_l_left * (prt[i].y - prt[i - 1].y) / l_left) - bm / prt[i].m * prt[N - 1].vy; 
+				vx_dot = c / prt[i].m * (-del_l_left * (prt[i].x - prt[i - 1].x) / l_left) - b / prt[i].m * prt[N - 1].vx; 
+				vy_dot = c / prt[i].m * (-del_l_left * (prt[i].y - prt[i - 1].y) / l_left) - b / prt[i].m * prt[N - 1].vy; 
 			} else {
-				vx_dot = cm / prt[i].m * (del_l_right * (prt[i + 1].x - prt[i].x) / l_right - del_l_left * (prt[i].x - prt[i - 1].x) / l_left) - bm / prt[i].m * prt[i].vx; 
-				vy_dot = cm / prt[i].m * (del_l_right * (prt[i + 1].y - prt[i].y) / l_right - del_l_left * (prt[i].y - prt[i - 1].y) / l_left) - bm / prt[i].m * prt[i].vy; 
+				vx_dot = c / prt[i].m * (del_l_right * (prt[i + 1].x - prt[i].x) / l_right - del_l_left * (prt[i].x - prt[i - 1].x) / l_left) - b / prt[i].m * prt[i].vx; 
+				vy_dot = c / prt[i].m * (del_l_right * (prt[i + 1].y - prt[i].y) / l_right - del_l_left * (prt[i].y - prt[i - 1].y) / l_left) - b / prt[i].m * prt[i].vy; 
 			}
 			prt[i].vx_dot = vx_dot;
 			prt[i].vy_dot = vy_dot;
@@ -110,8 +108,8 @@ function main() {
 		}
 		time += dt;		
 	}
+
 	
-	// Функция отрисовки
 	function draw() { 
 		ctx.clearRect(0, 0, w, h);
 		for (var i = 0; i < N; i++) { 
@@ -138,15 +136,7 @@ function main() {
 		clearInt(interv);
 	}
 
-	
-	function UpdateCoeffs() {
-		N = parseInt(document.getElementById('Num').value);
-		cm = parseFloat(document.getElementById('CM').value);
-		a = parseFloat(document.getElementById('DIST').value);
-		dt0 = 0.01;
-		bm = parseFloat(document.getElementById('B').value);
-	}
-	UpdateCoeffs();
+
 	Update();
 
 }
